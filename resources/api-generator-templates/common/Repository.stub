@@ -1,0 +1,66 @@
+<?php namespace $NAMESPACE_REPOSITORY$;
+
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+use Bosnadev\Repositories\Eloquent\Repository;
+use Schema;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
+class $MODEL_NAME$Repository extends Repository
+{
+
+    /**
+    * Configure the Model
+    *
+    **/
+    public function model()
+    {
+      return '$NAMESPACE_MODEL$\$MODEL_NAME$';
+    }
+
+	public function search($input)
+    {
+        $query = $MODEL_NAME$::query();
+
+        $columns = Schema::getColumnListing('$MODEL_NAME_PLURAL_CAMEL$');
+        $attributes = array();
+
+        foreach($columns as $attribute)
+        {
+            if(isset($input[$attribute]) and !empty($input[$attribute]))
+            {
+                $query->where($attribute, $input[$attribute]);
+                $attributes[$attribute] = $input[$attribute];
+            }
+            else
+            {
+                $attributes[$attribute] =  null;
+            }
+        }
+
+        return [$query->get(), $attributes];
+    }
+
+    public function apiFindOrFail($id)
+    {
+        $model = $this->find($id);
+
+        if(empty($model))
+        {
+            throw new HttpException(1001, "$MODEL_NAME$ not found");
+        }
+
+        return $model;
+    }
+
+    public function apiDeleteOrFail($id)
+    {
+        $model = $this->find($id);
+
+        if(empty($model))
+        {
+            throw new HttpException(1001, "$MODEL_NAME$ not found");
+        }
+
+        return $model->delete();
+    }
+}

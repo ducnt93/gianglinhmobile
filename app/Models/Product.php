@@ -1,0 +1,148 @@
+<?php namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model as Model;
+
+class Product extends Model
+{
+    
+	public $table = "tbl_products";
+    
+
+	public $fillable = [
+	    "id",
+		"Itemcode",
+		"ProductName",
+		"IDCategory",
+		"Price",
+		"idUnitPrice",
+		"Image",
+		"Content",
+		"Keyword",
+		"Band",
+		"Language",
+		"Colour",
+		"Size",
+		"Weight",
+		"Typedisplay",
+		"Sizedisplay",
+		"Contentdisplay",
+		"Type",
+		"Downloadmusic",
+		"Ring",
+		"Directory",
+		"Memory",
+		"Cardmemory",
+		"Contentmemory",
+		"Contentring",
+		"GPRS",
+		"HSCSD",
+		"EDGE",
+		"3G",
+		"WLAN",
+		"Bluetooth",
+		"Infrared",
+		"USB",
+		"OperSystem",
+		"Messages",
+		"Clock",
+		"Alarmclock",
+		"FMradio",
+		"Game",
+		"Approval",
+		"Java",
+		"Camera",
+		"Video",
+		"Record",
+		"Music",
+		"Film",
+		"Recordcall",
+		"Spearkout",
+		"Contentparti",
+		"Typebattery",
+		"Waittime",
+		"Timecall",
+		"Warranty",
+		"ProSpecial",
+		"Fromday",
+		"Today",
+		"iPromotion",
+		"Contentpromotion",
+		"IDTypeproduct",
+		"iCounter",
+		"iOrder",
+		"iStatus"
+	];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        "id" => "integer",
+		"Itemcode" => "string",
+		"ProductName" => "string",
+		"IDCategory" => "string",
+		"Price" => "string",
+		"idUnitPrice" => "boolean",
+		"Image" => "string",
+		"Content" => "string",
+		"Keyword" => "string",
+		"Band" => "string",
+		"Language" => "string",
+		"Colour" => "string",
+		"Size" => "string",
+		"Weight" => "string",
+		"Typedisplay" => "string",
+		"Sizedisplay" => "string",
+		"Contentdisplay" => "string",
+		"Type" => "string",
+		"Downloadmusic" => "string",
+		"Ring" => "boolean",
+		"Directory" => "string",
+		"Memory" => "string",
+		"Cardmemory" => "boolean",
+		"Contentmemory" => "string",
+		"Contentring" => "string",
+		"GPRS" => "string",
+		"HSCSD" => "boolean",
+		"EDGE" => "boolean",
+		"3G" => "boolean",
+		"WLAN" => "string",
+		"Bluetooth" => "boolean",
+		"Infrared" => "boolean",
+		"USB" => "string",
+		"OperSystem" => "string",
+		"Messages" => "string",
+		"Clock" => "boolean",
+		"Alarmclock" => "boolean",
+		"FMradio" => "boolean",
+		"Game" => "string",
+		"Approval" => "string",
+		"Java" => "boolean",
+		"Camera" => "string",
+		"Video" => "string",
+		"Record" => "string",
+		"Music" => "string",
+		"Film" => "string",
+		"Recordcall" => "boolean",
+		"Spearkout" => "boolean",
+		"Contentparti" => "string",
+		"Typebattery" => "string",
+		"Waittime" => "string",
+		"Timecall" => "string",
+		"Warranty" => "string",
+		"ProSpecial" => "boolean",
+		"iPromotion" => "boolean",
+		"Contentpromotion" => "string",
+		"IDTypeproduct" => "boolean",
+		"iCounter" => "boolean",
+		"iOrder" => "integer",
+		"iStatus" => "integer"
+    ];
+
+	public static $rules = [
+	    
+	];
+
+}

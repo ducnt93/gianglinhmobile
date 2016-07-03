@@ -1,0 +1,19 @@
+<?php namespace App\Http\Controllers\ADMIN;
+
+use App\Http\Requests;
+use Flash;
+use Mitul\Controller\AppBaseController as AppBaseController;
+use Response;
+
+class AdminController extends AppBaseController
+{
+    public function index()
+    {
+        return view('admin.home.index');
+    }
+
+    public function login()
+    {
+        return view('admin.login');
+    }
+}
