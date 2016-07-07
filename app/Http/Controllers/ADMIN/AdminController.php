@@ -9,11 +9,7 @@ class AdminController extends AppBaseController
 {
     public function index()
     {
+        Flash::success('Đăng nhập thành công!');
         return view('admin.home.index');
-    }
-
-    public function login()
-    {
-        return view('admin.login');
     }
 }

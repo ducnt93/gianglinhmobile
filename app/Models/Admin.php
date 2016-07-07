@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
-    public  $table = 'tbl_users';
+    protected $table = 'tbl_admins';
     /**
      * The attributes that are mass assignable.
      *

@@ -1,7 +1,7 @@
 /*
 	Validator v1.0.5
 	(c) 2012 Yair Even Or <http://dropthebit.com>
-	
+
 	MIT-style license.
 */
 
@@ -14,27 +14,27 @@ var validator = (function(){
 	/* general text messages
 	*/
 	message = {
-		invalid			: 'invalid input',
-		empty			: 'please put something here',
-		min				: 'input is too short',
-		max				: 'input is too long',
-		number_min		: 'too low',
-		number_max		: 'too high',
-		url				: 'invalid URL',
-		number			: 'not a number',
-		email			: 'email address is invalid',
-		email_repeat	: 'emails do not match',
-		password_repeat	: 'passwords do not match',
-		repeat			: 'no match',
-		complete		: 'input is not complete',
-		select			: 'Please select an option'
+		invalid			: 'giá trị nhập không đúng',
+		empty			: 'không được để trống',
+		min				: 'dãy nhập quá ngắn',
+		max				: 'dãy nhập quá dài',
+		number_min		: 'quá ngắn',
+		number_max		: 'quá dài',
+		url				: 'địa chỉ URL không hợp lệ',
+		number			: 'không phải là số',
+		email			: 'email không hợp lệ',
+		email_repeat	: 'emails không trùng nhau',
+		password_repeat	: 'mật khẩu không trùng nhau',
+		repeat			: 'không trùng nhau',
+		complete		: 'nhập chưa hoàn thành',
+		select			: 'Hãy chọn'
 	};
-	
+
 	// defaults
 	defaults = { alerts:true };
-	
+
 	/* Tests for each type of field (including Select element)
-	*/		
+	*/
 	tests = {
 		sameAsPlaceholder : function(a){
 			return $.fn.placeholder && a.attr('placeholder') !== undefined && data.val == a.prop('placeholder');
@@ -73,7 +73,7 @@ var validator = (function(){
 							return false;
 					return true;
 				};
-				
+
 				if( words.length < validateWords || !wordsLength(2) ){
 					alertTxt = message.complete;
 					return false;
@@ -166,7 +166,7 @@ var validator = (function(){
 			}
 			try{
 				day = new Date(A[2], A[1]-1, A[0]);
-				if( day.getMonth()+1 == A[1] && day.getDate() == A[0] ) 
+				if( day.getMonth()+1 == A[1] && day.getDate() == A[0] )
 					return day;
 				return false;
 			}
@@ -176,7 +176,7 @@ var validator = (function(){
 			}
 		},
 		url : function(a){
-			// minimalistic URL validation 
+			// minimalistic URL validation
 			function testUrl(url){
 				return /^(https?:\/\/)?([\w\d\-_]+\.+[A-Za-z]{2,})+\/?/.test( url );
 			}
@@ -211,24 +211,24 @@ var validator = (function(){
 			return true;
 		}
 	};
-	
+
 	/* marks invalid fields
-	*/  
+	*/
     mark = function(field, text){
 		if( !text || !field || !field.length )
 			return false;
-		
+
 		// check if not already marked as a 'bad' record and add the 'alert' object.
 		// if already is marked as 'bad', then make sure the text is set again because i might change depending on validation
 		var item = field.parents('.item'), warning;
-        
+
         item.find('.alert').remove();
-        
+
         if( defaults.alerts ){
             warning = $('<div>').addClass('alert').text( text );
             item.append( warning );
         }
-        
+
         item.removeClass('bad');
         setTimeout(function(){
             item.addClass('bad');
@@ -247,7 +247,7 @@ var validator = (function(){
                 $(this).remove();
             });
 	};
-	
+
 	/* Checks a single form field by it's type and specific (custom) attributes
 	*/
 	function checkField(){
@@ -259,12 +259,12 @@ var validator = (function(){
 		field.data( 'valid',true );										// every field starts as 'valid=true' until proven otherwise
 		field.data( 'type', field.attr('type') );						// every field starts as 'valid=true' until proven otherwise
 		field.data( 'val', field[0].value.replace(/^\s+|\s+$/g, "") );	// cache the value of the field and trim it
-		data = field.data();  											// cache the custom data attributes. first removes the DATA because jQuery has an 
+		data = field.data();  											// cache the custom data attributes. first removes the DATA because jQuery has an
 		var v = data.val;
-		
+
 		// Check if there is a specific error message for that field, if not, use the default 'invalid' message
 		alertTxt = message[field.prop('name')] || message.invalid;
-		
+
 		// SELECT / TEXTAREA nodes needs special treatment
 		if( field[0].nodeName.toLowerCase() === "select" ){
 			data.type = 'select';
@@ -330,7 +330,7 @@ var validator = (function(){
 
 		if( field.hasClass('optional') && !data.val )
 			data.valid = true;
-		
+
 		// mark / unmark the field, and set the general 'submit' flag accordingly
 		if( data.valid )
 			unmark( field );
@@ -338,10 +338,10 @@ var validator = (function(){
 			mark( field, alertTxt );
 			submit = false;
 		}
-		
+
 		return data.valid;
 	}
-	
+
 	/* vaildates all the REQUIRED fields prior to submiting the form
 	*/
 	function checkAll( $form ){
@@ -358,10 +358,10 @@ var validator = (function(){
 			// use an AND operation, so if any of the fields returns 'false' then the submitted result will be also FALSE
 			submit = submit * checkField.apply(this);
 		});
-		
+
 		return !!submit;  // casting the variable to make sure it's a boolean
 	}
-	
+
 	return {
 		defaults 	: defaults,
 		checkField 	: checkField,

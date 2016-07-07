@@ -4,10 +4,21 @@
 @endsection
 @section('content')
     <div class="col-md-12 col-sm-12 col-xs-12">
+        @include('flash::message')
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Phụ kiện
-                </h2>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-6"><h2>Phụ kiện</h2></div>
+                    <div class="col-md-6 col-sm-6 col-xs-6"><a class="btn btn-primary"
+                                                               href="{!! URL::route('admin.accessories.create') !!}}"
+                                                               name="themmoi"
+                                                               style="float: right;"><span
+                                    class="glyphicon glyphicon-plus"
+                                    aria-hidden="true" style="color: white ; padding-right: 2px "></span>Thêm mới</a>
+                    </div>
+                </div>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -100,4 +111,7 @@
 @endsection
 @section('script')
     @include('admin.common.jsViewList')
+    <script>
+        $('div.alert').delay(3000).slideUp();
+    </script>
 @endsection

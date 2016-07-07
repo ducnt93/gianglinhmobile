@@ -55,14 +55,25 @@ Route::get('infoSuppliers/{id}/delete', [
 ]);
 
 //Phụ kiện
-Route::group(['prefix' => 'accessories'], function () {
-    Route::get('index', [
+Route::group(['prefix' => 'phu_kien'], function () {
+    Route::get('danh_sach', [
         'as' => 'admin.accessories.index',
         'uses' => 'AccessoryController@index',
     ]);
-    Route::get('delete', [
+
+    Route::get('tao_moi', [
+        'as' => 'admin.accessories.create',
+        'uses' => 'AccessoryController@create'
+    ]);
+
+    Route::get('xoa', [
         'as' => 'admin.accessories.delete',
         'uses' => 'AccessoryController@destroy',
+    ]);
+
+    Route::get('chi_tiet/{id}', [
+        'as' => 'admin.accessories.show',
+        'uses' => 'AccessoryController@show'
     ]);
 });
 //Loại phụ kiện
@@ -73,5 +84,3 @@ Route::group(['prefix' => '/'], function () {
         'uses' => 'AdminController@index',
     ]);
 });
-
-Route::get('login', 'AdminController@login');

@@ -2,71 +2,86 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UserLoginRequest;
+use App\User;
+use Flash;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
+    use AuthenticatesAndRegistersUsers;
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/';
+    protected $redirectAfterLogout = '/member/auth/login';
 
-    /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        $this->middleware('guest', ['except' => 'getLogout']);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'level' => 2,
+            'remember_token' => $data['_token'],
         ]);
+    }
+
+    public function getAdd()
+    {
+        return view('production.auth.register');
+    }
+
+    public function postAdd(CreateUserRequest $request)
+    {
+        $user = new User();
+        $user->username = $request->username;
+        $user->password = bcrypt($request->password);
+        $user->level = 2;
+        $user->email = $request->email;
+        $user->remember_token = $request->_token;
+        $user->save();
+        Flash::success('Thêm thành viên thành công');
+        return redirect()->route('member.auth.login');
+    }
+
+    public function getLogin()
+    {
+        return view('production.auth.login');
+    }
+
+    public function postLogin(UserLoginRequest $request)
+    {
+        $login = [
+            'username' => $request->username,
+            'password' => $request->password,
+            'level' => 2
+        ];
+        if (Auth::attempt($login)) {
+            return redirect()->route('/');
+        } else {
+            Flash::error('Tên đăng nhập hoặc mật khẩu không chính xác');
+            return redirect()->back();
+        }
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+        Flash::info('Đăng xuất thành công');
+        return redirect()->route('member.auth.login');
     }
 }
