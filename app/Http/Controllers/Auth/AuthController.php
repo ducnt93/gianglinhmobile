@@ -54,7 +54,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->remember_token = $request->_token;
         $user->save();
-        Flash::success('Thêm thành viên thành công');
+        Flash::success('Thêm thành viên thành công.Vui lòng đăng nhập');
         return redirect()->route('member.auth.login');
     }
 
