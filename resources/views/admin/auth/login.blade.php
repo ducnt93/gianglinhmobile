@@ -4,7 +4,7 @@
         <div id="wrapper">
             <div id="login" class=" form">
                 <section class="login_content">
-                    <form action="{{url('/admin/auth/login')}}" method="post">
+                    <form action="{{url('/admin/login')}}" method="post">
                         {!! csrf_field() !!}
                         <h1>Quản trị website</h1>
                         <div id="errors">
@@ -29,14 +29,19 @@
                             @endif
                         </div>
                         <div>
-                            <input type="checkbox" id="remember" name="remember"> Ghi nhớ tài khoản của tôi.
+                            <p>
+                                <label><input type="checkbox" id="remember" name="remember"> Ghi nhớ tài khoản
+                                    của tôi.</label>
+                            </p>
                         </div>
-                        <div class="clearfix"></div>
+                        <hr>
                         <div>
-                            <button class="btn btn-default submit" type="submit">Đăng nhập</button>
-                            <a class="reset_pass" href="#">Quên mật khẩu?</a>
+                            <p>
+                                <button class="btn btn-default submit" type="submit">Đăng nhập</button>
+                                <a class="reset_pass" href="#">Quên mật khẩu?</a>
+                            </p>
                             <p class="change_link">Bạn chưa có tài khoản ?
-                                <a href="{{url('/admin/auth/register')}}" class="to_register"> Đăng ký </a>
+                                <a href="{{url('/admin/register')}}" class="to_register"> Đăng ký </a>
                             </p>
                         </div>
                         <div class="clearfix"></div>

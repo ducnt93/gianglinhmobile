@@ -4,7 +4,7 @@
         <div id="wrapper">
             <div id="register1" class=" form">
                 <section class="login_content">
-                    <form action="{{url('/admin/auth/register')}}" method="post">
+                    <form action="{{url('/admin/register')}}" method="post">
                         {!! csrf_field() !!}
                         <h1>Tạo tài khoản</h1>
                         <div id="errors">
@@ -49,12 +49,12 @@
                              @endif
                          </div>--}}
                         <div>
-                            <button class="btn btn-default submit" type="submit">Đăng ký</button>
+                            <button class="btn btn-primary submit" type="submit">Đăng ký</button>
                         </div>
                         <div class="clearfix"></div>
                         <div class="separator">
                             <p class="change_link">Bạn đã có tài khoản ?
-                                <a href="{{url('/auth/login')}}" class="to_register"> Đăng nhập </a>
+                                <a href="{{url('/admin/login')}}" class="to_register"> Đăng nhập </a>
                             </p>
                             <div class="clearfix"></div>
                             <br/>

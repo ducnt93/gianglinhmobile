@@ -4,10 +4,10 @@
         <div id="wrapper">
             <div id="register1" class=" form">
                 <section class="login_content">
-                    <form action="{{url('/member/auth/register')}}" method="post">
+                    <form action="{{url('/member/register')}}" method="post">
                         {!! csrf_field() !!}
-                        <h1>Tạo tài khoản</h1>
-                        <div>
+                        <h1>Đăng ký thành viên</h1>
+                        <div id="errors">
                             @include('flash::message')
                         </div>
                         <div class=" {{ $errors->has('username') ? ' has-error' : '' }}">
@@ -54,7 +54,7 @@
                         <div class="clearfix"></div>
                         <div class="separator">
                             <p class="change_link">Bạn đã có tài khoản ?
-                                <a href="{{url('/member/auth/login')}}" class="to_register"> Đăng nhập </a>
+                                <a href="{{url('/member/login')}}" class="to_register"> Đăng nhập </a>
                             </p>
                             <div class="clearfix"></div>
                             <br/>

@@ -12,7 +12,10 @@
 		"bosnadev/repositories": "dev-master",
 		"mitulgolakiya/laravel-api-generator": "dev-master",
 		"doctrine/dbal": "v2.5",
-		"twbs/bootstrap": "^3.3"
+		"twbs/bootstrap": "^3.3",
+        "cviebrock/eloquent-sluggable": "^4.0",
+        "laravel/socialite": "^2.0"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

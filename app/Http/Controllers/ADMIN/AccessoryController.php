@@ -52,8 +52,6 @@ class AccessoryController extends AppBaseController
     public function store(CreateAccessoryRequest $request)
     {
         $input = $request->all();
-        echo $input;
-/*
         $accessory = $this->accessoryRepository->create($input);
         if (empty($accessory)) {
             Flash::error('Đã có lỗi xảy ra vui lòng kiểm tra lại.');
@@ -61,7 +59,19 @@ class AccessoryController extends AppBaseController
             Flash::success('1 phụ kiện vừa được thêm thanh công.');
 
             return redirect(route('admin.accessories.index'));
-        }*/
+        }
+
+        /*    $accessory = new Accessory();
+            $accessory->Accessoryname = "Tai nghe không dây Sony";
+            $accessory->Image = "anh1.jpg";
+            $accessory->Price = "2.000.000";
+            $accessory->idUnitPrice = 1000;
+            $accessory->IDtypeaccessory = 1;
+            $accessory->Content = "Không có giá";
+            $accessory->iStatus = 1;
+            $accessory->iOrder = 12;
+            $accessory->save();
+            return redirect(route('admin.accessories.index'));*/
     }
 
     /**

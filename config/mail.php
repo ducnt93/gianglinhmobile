@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'gsmtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'dhcn931110@gmail.com', 'name' => 'Nguyễn Trung Đức'],
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    /*'username' => env('MAIL_USERNAME'),*/
+
+    'username' => 'dhcn931110',
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +96,9 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+    /*'password' => env('MAIL_PASSWORD'),*/
+
+    'password' => 'anhduc123',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,5 +112,7 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+
+    'pretend' => false,
 
 ];

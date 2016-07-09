@@ -37,8 +37,8 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->remember_token = $request->_token;
         $user->save();
-        Flash::success('Tài khoản mới vừa được tạo. Vui lòng đăng nhập!');
-        return redirect()->route('admin.auth.login');
+        Flash::success('Tài khoản mới vừa được tạo. Vui lòng đăng nh');
+        return redirect()->route('admin.login');
     }
 
     public function getLogin()
@@ -70,6 +70,6 @@ class AuthController extends Controller
     {
         Auth::guard('admin')->logout();
         Flash::info('Đăng xuất thành công.');
-        return redirect('admin/auth/login');
+        return redirect()->route('admin.login');
     }
 }

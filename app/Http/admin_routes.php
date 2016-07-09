@@ -1,6 +1,6 @@
 <?php
 
-Route::resource("categories", "CategoryController");
+/*Route::resource("categories", "CategoryController");
 
 Route::resource("fQAs", "FQAsController");
 
@@ -36,7 +36,7 @@ Route::resource("news", "NewsController");
 
 Route::resource("members", "MemberController");
 
-Route::resource("infos", "InfosController");
+Route::resource("infos", "InfosController");*/
 
 //Thong tin loại nhà cung cấp
 Route::resource('infoSupplierTypes', 'InfoSupplierTypeController');
@@ -64,6 +64,11 @@ Route::group(['prefix' => 'phu_kien'], function () {
     Route::get('tao_moi', [
         'as' => 'admin.accessories.create',
         'uses' => 'AccessoryController@create'
+    ]);
+
+    Route::post('tao_moi_post', [
+        'as' => 'admin.accessories.store',
+        'uses' => 'AccessoryController@store'
     ]);
 
     Route::get('xoa', [

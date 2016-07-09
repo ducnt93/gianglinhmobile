@@ -1,24 +1,34 @@
 <?php namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model as Model;
 
 class Accessory extends Model
 {
-    
-	public $table = "tbl_accessory";
-    
+    use Sluggable;
 
-	public $fillable = [
-	    "id",
-		"Accessoryname",
-		"Image",
-		"Price",
-		"idUnitPrice",
-		"IDtypeaccessory",
-		"Content",
-		"iStatus",
-		"iOrder"
-	];
+    public $table = "tbl_accessory";
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'Accessoryname'
+            ]
+        ];
+    }
+
+    public $fillable = [
+        "id",
+        "Accessoryname",
+        "Image",
+        "Price",
+        "idUnitPrice",
+        "IDtypeaccessory",
+        "Content",
+        "iStatus",
+        "iOrder"
+    ];
 
     /**
      * The attributes that should be casted to native types.
@@ -27,18 +37,18 @@ class Accessory extends Model
      */
     protected $casts = [
         "id" => "integer",
-		"Accessoryname" => "string",
-		"Image" => "string",
-		"Price" => "string",
-		"idUnitPrice" => "boolean",
-		"IDtypeaccessory" => "boolean",
-		"Content" => "string",
-		"iStatus" => "integer",
-		"iOrder" => "integer"
+        "Accessoryname" => "string",
+        "Image" => "string",
+        "Price" => "string",
+        "idUnitPrice" => "boolean",
+        "IDtypeaccessory" => "boolean",
+        "Content" => "string",
+        "iStatus" => "integer",
+        "iOrder" => "integer"
     ];
 
-	public static $rules = [
-	    
-	];
+    public static $rules = [
+
+    ];
 
 }

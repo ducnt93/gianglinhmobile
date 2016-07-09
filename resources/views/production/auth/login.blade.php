@@ -4,10 +4,10 @@
         <div id="wrapper">
             <div id="login" class=" form">
                 <section class="login_content">
-                    <form action="{{url('/member/auth/login')}}" method="post">
+                    <form action="{{url('/member/login')}}" method="post">
                         {!! csrf_field() !!}
-                        <h1>Quản trị website</h1>
-                        <div>
+                        <h1>ĐĂNG NHẬP</h1>
+                        <div id="errors">
                             @include('flash::message')
                         </div>
                         <div>
@@ -29,13 +29,24 @@
                             @endif
                         </div>
                         <div>
-                            <input type="checkbox" id="remember" name="remember"> Ghi nhớ tài khoản của tôi.
+                            <p>
+                                <label> <input type="checkbox" id="remember" name="remember"> Ghi nhớ tài khoản của tôi.</label>
+                            </p>
                         </div>
                         <div>
-                            <button class="btn btn-default submit" type="submit">Đăng nhập</button>
-                            <a class="reset_pass" href="#">Quên mật khẩu?</a>
+                            <p>
+                                <a href="{!! url('/facebook/redirect') !!}">Facebook login</a>
+                                <a href="{!! url('/google/redirect') !!}">Google login</a>
+                            </p>
+                        </div>
+                        <hr>
+                        <div>
+                            <p>
+                                <button class="btn btn-default submit" type="submit">Đăng nhập</button>
+                                <a class="reset_pass" href="{!! url('/member/password/email') !!}">Quên mật khẩu?</a>
+                            </p>
                             <p class="change_link">Bạn chưa có tài khoản ?
-                                <a href="{{url('/member/auth/register')}}" class="to_register"> Đăng ký </a>
+                                <a href="{{url('/member/register')}}" class="to_register"> Đăng ký </a>
                             </p>
                         </div>
                         <div class="clearfix"></div>

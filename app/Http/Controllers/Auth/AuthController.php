@@ -55,7 +55,7 @@ class AuthController extends Controller
         $user->remember_token = $request->_token;
         $user->save();
         Flash::success('Thêm thành viên thành công.Vui lòng đăng nhập');
-        return redirect()->route('member.auth.login');
+        return redirect()->route('member.login');
     }
 
     public function getLogin()
@@ -82,6 +82,6 @@ class AuthController extends Controller
     {
         Auth::logout();
         Flash::info('Đăng xuất thành công');
-        return redirect()->route('member.auth.login');
+        return redirect()->route('member.login');
     }
 }
